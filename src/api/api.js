@@ -5,7 +5,7 @@ const options = {
   url: 'https://tiktok33.p.rapidapi.com/trending/feed',
   headers: {
     'x-rapidapi-host': 'tiktok33.p.rapidapi.com',
-    'x-rapidapi-key': 'e18d8210b4mshf39970da57434a2p11b2a4jsn88869d8e1347',
+    'x-rapidapi-key': 'c1257dc04cmshd888bbb072eb770p1f2b8ajsnbf16d4cd1d66',
   },
 }
 
