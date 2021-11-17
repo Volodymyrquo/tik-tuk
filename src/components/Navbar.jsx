@@ -46,11 +46,6 @@ const Navbar = (props) => {
             User
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link component={NavLink} to='/user'>
-            Movies
-          </Link>
-        </MenuItem>
       </Menu>
     </div>
   )

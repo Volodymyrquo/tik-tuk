@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { Header, News, User, Movies } from './components'
+import { Header, News, User } from './components'
 
 function App() {
   return (
@@ -9,7 +9,6 @@ function App() {
         <Redirect exact from='/' to='/news' />
         <Route path='/news' component={News} />
         <Route path='/user' component={User} />
-        <Route path='/movies' component={Movies} />
       </Switch>
     </div>
   )

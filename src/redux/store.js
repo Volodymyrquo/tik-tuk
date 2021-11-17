@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import moviesReducer from './movies-reducer'
+import newsReducer from './news-reducer'
+import userReducer from './user-reducer'
 
 const reducers = combineReducers({
-  moviesPage: moviesReducer,
+  newsPage: newsReducer,
+  userPage: userReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
