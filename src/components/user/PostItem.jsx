@@ -59,23 +59,16 @@ const PostItem = ({ item }) => {
           component='img'
           className={classes.cardMedia}
           image={item.covers.default}
-          title={item.text}
         />
         <CardContent className={classes.cardContent}>
           <Typography variant='h6' gutterBottom>
             {item.text}
           </Typography>
-          <Typography>{item.text}</Typography>
+          {item.hashtags.map((item, idx) => (
+            <Typography key={idx}>#${item.name}</Typography>
+          ))}
         </CardContent>
         <CardActions>
-          {/*   <Button
-            component={NavLink}
-            to={`/movieProfile/${item.id}`}
-            size='small'
-            color='primary'
-            variant='contained'>
-            About
-          </Button> */}
           <div>
             <Button
               onClick={() => {

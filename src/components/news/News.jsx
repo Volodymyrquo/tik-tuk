@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const News = ({ news, getNews, getProfile, getPosts }) => {
+const News = ({ news, getNews, getProfile, getPosts, isFetching }) => {
   const classes = useStyles()
 
   useEffect(() => {
@@ -30,11 +30,15 @@ const News = ({ news, getNews, getProfile, getPosts }) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} maxWidth='md'>
-        <Grid container spacing={2}>
-          {news.map((item) => (
-            <Movie key={item.id} item={item} />
-          ))}
-        </Grid>
+        {isFetching ? (
+          ' Loading...'
+        ) : (
+          <Grid container spacing={2}>
+            {news.map((item) => (
+              <Movie key={item.id} item={item} />
+            ))}
+          </Grid>
+        )}
       </Paper>
     </div>
   )
@@ -43,6 +47,7 @@ const News = ({ news, getNews, getProfile, getPosts }) => {
 const mapStateToProps = (state) => {
   return {
     news: state.newsPage.news,
+    isFetching: state.newsPage.isFetching,
   }
 }
 
