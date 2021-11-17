@@ -65,7 +65,7 @@ const PostItem = ({ item }) => {
             {item.text}
           </Typography>
           {item.hashtags.map((item, idx) => (
-            <Typography key={idx}>#${item.name}</Typography>
+            <Typography key={idx}>#{item.name}</Typography>
           ))}
         </CardContent>
         <CardActions>

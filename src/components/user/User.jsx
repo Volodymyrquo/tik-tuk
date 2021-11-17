@@ -93,17 +93,17 @@ const User = ({
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component='h5' variant='h5'>
-              {profile.user.nickname}
+              {profile?.user?.nickname}
             </Typography>
             <Typography variant='subtitle1' color='textSecondary'>
-              {profile.user.signature}
+              {profile?.user?.signature}
             </Typography>
           </CardContent>
         </div>
         <CardMedia
           component='img'
           className={classes.cover}
-          image={profile.user.avatarLarger}
+          image={profile?.user?.avatarLarger}
           title='Live from space album cover'
         />
       </Card>
