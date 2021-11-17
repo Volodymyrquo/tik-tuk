@@ -71,6 +71,8 @@ const NewsItem = ({ item }) => {
         </CardMedia>
         <CardContent className={classes.cardContent}>
           <Typography>{item.text}</Typography>
+          <Typography>Comments: {item.commentCount}</Typography>
+          <Typography>Likes: {item.shareCount}</Typography>
         </CardContent>
       </Card>
     </Grid>

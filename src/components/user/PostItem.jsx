@@ -40,49 +40,51 @@ const useStyles = makeStyles((theme) => ({
 
 const PostItem = ({ item }) => {
   const classes = useStyles()
-  /*   const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [videoUrl, setVideoUrl] = useState('')
 
   const handleOpen = (id) => {
     setOpen(true)
-    receiveVideoUrl(id)
+    setVideoUrl(item.videoUrl)
   }
 
   const handleClose = () => {
     setOpen(false)
-  } */
-
+  }
+  console.log(item.covers.default)
   return (
     <Grid item key={item.id} xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardMedia
+          component='img'
           className={classes.cardMedia}
-          image={item.video.cover}
-          title={item.desc}
+          image={item.covers.default}
+          title={item.text}
         />
         <CardContent className={classes.cardContent}>
           <Typography variant='h6' gutterBottom>
-            {item.desc}
+            {item.text}
           </Typography>
-          <Typography>{item.desc}</Typography>
+          <Typography>{item.text}</Typography>
         </CardContent>
-        {/*  <CardActions>
-          <Button
+        <CardActions>
+          {/*   <Button
             component={NavLink}
             to={`/movieProfile/${item.id}`}
             size='small'
             color='primary'
             variant='contained'>
             About
-          </Button>
+          </Button> */}
           <div>
             <Button
               onClick={() => {
-                handleOpen(item.id)
+                handleOpen()
               }}
               size='small'
               color='secondary'
               variant='contained'>
-              Trailer
+              Play
             </Button>
             <Modal
               aria-labelledby='transition-modal-title'
@@ -99,8 +101,8 @@ const PostItem = ({ item }) => {
                 <div className={classes.paper}>
                   <h2 id='transition-modal-title'>{item.title}</h2>
                   <ReactPlayer
-                    width='75vw'
-                    height='75vh'
+                    width='100%'
+                    height='100%'
                     controls
                     url={videoUrl}
                   />
@@ -108,7 +110,7 @@ const PostItem = ({ item }) => {
               </Fade>
             </Modal>
           </div>
-        </CardActions> */}
+        </CardActions>
       </Card>
     </Grid>
   )

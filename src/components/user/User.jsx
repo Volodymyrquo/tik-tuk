@@ -3,7 +3,7 @@ import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Pagination from '@material-ui/lab/Pagination'
 import { connect } from 'react-redux'
-import { getPosts, getProfile } from '../../redux/user-reducer'
+import { getPosts, getProfile, setCurrentPage } from '../../redux/user-reducer'
 /* import Preloader from '../common/preloader/Preloader' */
 import PostItem from './PostItem'
 
@@ -16,32 +16,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const User = ({ getPosts, getProfile, posts }) => {
+const User = ({
+  getPosts,
+  getProfile,
+  posts,
+  currentPage,
+  pageSize,
+  totalPostsCount,
+}) => {
   const classes = useStyles()
 
-  /*  const [pageNumber, setPageNumber] = useState(currentPage) */
+  const [pageNumber, setPageNumber] = useState(currentPage)
 
-  /*   onPageChanged = (page) => {
+  const onPageChanged = (page) => {
     setPageNumber(page)
-  } */
+  }
 
   useEffect(() => {
     getPosts()
+  }, [getPosts])
+  useEffect(() => {
     getProfile()
-  }, [])
+  }, [getProfile])
 
-  /*  let pagesCount = Math.ceil(totalMoviesCount / pageSize) */
+  let pagesCount = Math.ceil(totalPostsCount / pageSize)
 
-  /*   const pages = []
+  const pages = []
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
-  } */
+  }
 
-  /*   const pageMovies = movies.slice(
+  const pagePosts = posts.slice(
     pageNumber * pageSize - pageSize,
     pageNumber * pageSize
   )
- */
+
   return (
     <>
       {/*   {isFetching ? <Preloader /> : null} */}
@@ -49,7 +58,7 @@ const User = ({ getPosts, getProfile, posts }) => {
         className={classes.cardGrid}
         maxWidth='md'
         style={{ marginTop: '80px' }}>
-        {/*       <Pagination
+        <Pagination
           onChange={(event, page) => {
             onPageChanged(page)
           }}
@@ -58,9 +67,9 @@ const User = ({ getPosts, getProfile, posts }) => {
           color='primary'
           boundaryCount={5}
           style={{ marginBottom: '16px' }}
-        /> */}
+        />
         <Grid container spacing={4}>
-          {posts.map((item) => (
+          {pagePosts.map((item) => (
             <>
               <PostItem item={item} />
             </>
@@ -74,10 +83,14 @@ const User = ({ getPosts, getProfile, posts }) => {
 const mapStateToProps = (state) => {
   return {
     posts: state.userPage.posts,
+    pageSize: state.userPage.pageSize,
+    totalPostsCount: state.userPage.totalPostsCount,
+    currentPage: state.userPage.currentPage,
   }
 }
 
 export default connect(mapStateToProps, {
   getProfile,
   getPosts,
+  setCurrentPage,
 })(User)
